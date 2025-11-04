@@ -1,0 +1,60 @@
+# Node
+**/node_modules/
+
+# Next.js
+.next/
+out/
+.vercel/
+.turbo/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+
+# Env
+.env
+.env.local
+.env.*.local
+.env.*
+.envrc
+
+# Builds / dist
+build/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+# Virtual environments
+.venv/
+backend/.venv/
+**/.venv/
+venv/
+env/
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# SQLite DB backups
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+
+# Misc
+coverage/
+.cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+
