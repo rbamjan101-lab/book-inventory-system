@@ -16,7 +16,10 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
+# Run with uvicorn (explicit host for demos)
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+# or via the module entrypoint
+python -m app
 ```
 
 API docs available at `http://localhost:8000/docs`.
