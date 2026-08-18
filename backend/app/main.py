@@ -42,7 +42,7 @@ app.include_router(purchases.router)
 app.include_router(sales.router)
 app.include_router(sales_returns.router)
 
-    @app.get("/health")
+@app.get("/health")
     def health():
         return {"status": "ok"}
 
