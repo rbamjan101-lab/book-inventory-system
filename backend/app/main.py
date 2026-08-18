@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import Base, engine
-from .routers import books
+from .routers import books, vendors, customers, purchases, sales, sales_returns
 
 
 def _cors_origins() -> list[str]:
@@ -14,8 +14,9 @@ def _cors_origins() -> list[str]:
 
 
 def create_app() -> FastAPI:
-	app = FastAPI(title="Book Inventory API", version="1.0.0")
+    app = FastAPI(title="Book Inventory API", version="1.0.0")
 
+<<<<<<< HEAD
 	origins = _cors_origins()
 	app.add_middleware(
 		CORSMiddleware,
@@ -24,14 +25,33 @@ def create_app() -> FastAPI:
 		allow_methods=["*"],
 		allow_headers=["*"],
 	)
+=======
+    # CORS for local dev frontend
+    origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+>>>>>>> 044d66a6d594879a0c29f484d9ed34adc73925db
 
-	app.include_router(books.router)
+    app.include_router(books.router)
+    app.include_router(vendors.router)
+    app.include_router(customers.router)
+    app.include_router(purchases.router)
+    app.include_router(sales.router)
+    app.include_router(sales_returns.router)
 
-	@app.get("/health")
-	def health():
-		return {"status": "ok"}
+    @app.get("/health")
+    def health():
+        return {"status": "ok"}
 
-	return app
+    return app
 
 
 # Create tables if not exist on startup (simple approach without Alembic)

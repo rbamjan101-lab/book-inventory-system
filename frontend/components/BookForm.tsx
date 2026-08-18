@@ -49,71 +49,89 @@ export default function BookForm({ initial, onSubmit, submitLabel = 'Save' }: Pr
 		}
 	};
 
-	return (
-		<form onSubmit={handleSubmit} className="space-y-4">
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-				<label className="flex flex-col gap-1">
-					<span className="text-sm font-medium">Title</span>
-					<input
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-						required
-						aria-invalid={!!fieldErrors.title}
-						className={fieldErrors.title ? 'border-red-500' : ''}
-					/>
-					{fieldErrors.title && <span className="text-xs text-red-600">{fieldErrors.title}</span>}
-				</label>
-				<label className="flex flex-col gap-1">
-					<span className="text-sm font-medium">Author</span>
-					<input
-						value={author}
-						onChange={(e) => setAuthor(e.target.value)}
-						required
-						aria-invalid={!!fieldErrors.author}
-						className={fieldErrors.author ? 'border-red-500' : ''}
-					/>
-					{fieldErrors.author && <span className="text-xs text-red-600">{fieldErrors.author}</span>}
-				</label>
-				<label className="flex flex-col gap-1">
-					<span className="text-sm font-medium">ISBN</span>
-					<input value={isbn ?? ''} onChange={(e) => setIsbn(e.target.value)} />
-				</label>
-				<label className="flex flex-col gap-1">
-					<span className="text-sm font-medium">Quantity</span>
-					<input
-						type="number"
-						min={0}
-						value={quantity}
-						onChange={(e) => setQuantity(Number(e.target.value))}
-						required
-						aria-invalid={!!fieldErrors.quantity}
-						className={fieldErrors.quantity ? 'border-red-500' : ''}
-					/>
-					{fieldErrors.quantity && <span className="text-xs text-red-600">{fieldErrors.quantity}</span>}
-				</label>
-				<label className="flex flex-col gap-1">
-					<span className="text-sm font-medium">Price</span>
-					<input
-						type="number"
-						min={0}
-						step="0.01"
-						value={price}
-						onChange={(e) => setPrice(Number(e.target.value))}
-						required
-						aria-invalid={!!fieldErrors.price}
-						className={fieldErrors.price ? 'border-red-500' : ''}
-					/>
-					{fieldErrors.price && <span className="text-xs text-red-600">{fieldErrors.price}</span>}
-				</label>
-			</div>
-			{error && <p className="text-sm text-red-600">{error}</p>}
-			<div className="flex gap-2">
-				<button type="submit" disabled={loading || Object.keys(fieldErrors).length > 0} className="btn btn-primary">
-					{loading ? 'Saving...' : submitLabel}
-				</button>
-			</div>
-		</form>
-	);
+        return (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <label className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-slate-600">Title</span>
+                                        <input
+                                                value={title}
+                                                onChange={(e) => setTitle(e.target.value)}
+                                                required
+                                                aria-invalid={!!fieldErrors.title}
+                                                className={`rounded-md border px-3 py-2 text-sm ${
+                                                        fieldErrors.title ? 'border-red-500' : 'border-slate-200'
+                                                }`}
+                                        />
+                                        {fieldErrors.title && <span className="text-xs text-red-600">{fieldErrors.title}</span>}
+                                </label>
+                                <label className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-slate-600">Author</span>
+                                        <input
+                                                value={author}
+                                                onChange={(e) => setAuthor(e.target.value)}
+                                                required
+                                                aria-invalid={!!fieldErrors.author}
+                                                className={`rounded-md border px-3 py-2 text-sm ${
+                                                        fieldErrors.author ? 'border-red-500' : 'border-slate-200'
+                                                }`}
+                                        />
+                                        {fieldErrors.author && <span className="text-xs text-red-600">{fieldErrors.author}</span>}
+                                </label>
+                                <label className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-slate-600">ISBN</span>
+                                        <input
+                                                value={isbn ?? ''}
+                                                onChange={(e) => setIsbn(e.target.value)}
+                                                className="rounded-md border border-slate-200 px-3 py-2 text-sm"
+                                        />
+                                </label>
+                                <label className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-slate-600">Quantity</span>
+                                        <input
+                                                type="number"
+                                                min={0}
+                                                value={quantity}
+                                                onChange={(e) => setQuantity(Number(e.target.value))}
+                                                required
+                                                aria-invalid={!!fieldErrors.quantity}
+                                                className={`rounded-md border px-3 py-2 text-sm ${
+                                                        fieldErrors.quantity ? 'border-red-500' : 'border-slate-200'
+                                                }`}
+                                        />
+                                        {fieldErrors.quantity && (
+                                                <span className="text-xs text-red-600">{fieldErrors.quantity}</span>
+                                        )}
+                                </label>
+                                <label className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-slate-600">Price</span>
+                                        <input
+                                                type="number"
+                                                min={0}
+                                                step="0.01"
+                                                value={price}
+                                                onChange={(e) => setPrice(Number(e.target.value))}
+                                                required
+                                                aria-invalid={!!fieldErrors.price}
+                                                className={`rounded-md border px-3 py-2 text-sm ${
+                                                        fieldErrors.price ? 'border-red-500' : 'border-slate-200'
+                                                }`}
+                                        />
+                                        {fieldErrors.price && <span className="text-xs text-red-600">{fieldErrors.price}</span>}
+                                </label>
+                        </div>
+                        {error && <p className="text-sm text-red-600">{error}</p>}
+                        <div className="flex gap-2">
+                                <button
+                                        type="submit"
+                                        disabled={loading || Object.keys(fieldErrors).length > 0}
+                                        className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+                                >
+                                        {loading ? 'Saving…' : submitLabel}
+                                </button>
+                        </div>
+                </form>
+        );
 }
 
 

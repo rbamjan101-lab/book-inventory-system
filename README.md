@@ -32,8 +32,15 @@ cd backend
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
+<<<<<<< HEAD
 cp .env.example .env       # edit DATABASE_URL if using Supabase
 uvicorn app.main:app --reload --port 8000
+=======
+# Run with uvicorn (explicit host for demos)
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+# or via the module entrypoint
+python -m app
+>>>>>>> 044d66a6d594879a0c29f484d9ed34adc73925db
 ```
 
 API docs: `http://localhost:8000/docs`
