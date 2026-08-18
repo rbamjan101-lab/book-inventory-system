@@ -27,18 +27,19 @@ def create_app() -> FastAPI:
 	)
 =======
     # CORS for local dev frontend
-    origins = [
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ]
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
->>>>>>> 044d66a6d594879a0c29f484d9ed34adc73925db
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
     app.include_router(books.router)
     app.include_router(vendors.router)
