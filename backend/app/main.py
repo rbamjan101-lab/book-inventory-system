@@ -36,11 +36,11 @@ app.add_middleware(
 
 
 app.include_router(books.router)
-    app.include_router(vendors.router)
-    app.include_router(customers.router)
-    app.include_router(purchases.router)
-    app.include_router(sales.router)
-    app.include_router(sales_returns.router)
+app.include_router(vendors.router)
+app.include_router(customers.router)
+app.include_router(purchases.router)
+app.include_router(sales.router)
+app.include_router(sales_returns.router)
 
     @app.get("/health")
     def health():
