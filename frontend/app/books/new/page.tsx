@@ -3,13 +3,13 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import BookForm from '@/components/BookForm';
-import { api } from '@/lib/api';
+import { api, type BookCreate, type BookUpdate } from '@/lib/api';
 
 export default function NewBookPage() {
 	const router = useRouter();
 
-	async function handleCreate(values: Parameters<typeof api.createBook>[0]) {
-		await api.createBook(values);
+	async function handleCreate(values: BookCreate | BookUpdate) {
+		await api.createBook(values as BookCreate);
 		router.push('/');
 	}
 

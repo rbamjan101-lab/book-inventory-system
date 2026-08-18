@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -5,14 +7,16 @@ from .database import Base, engine
 from .routers import books
 
 
+def _cors_origins() -> list[str]:
+	default = "http://localhost:3000,http://127.0.0.1:3000"
+	raw = os.getenv("CORS_ORIGINS", default)
+	return [origin.strip() for origin in raw.split(",") if origin.strip()]
+
+
 def create_app() -> FastAPI:
 	app = FastAPI(title="Book Inventory API", version="1.0.0")
 
-	# CORS for local dev frontend
-	origins = [
-		"http://localhost:3000",
-		"http://127.0.0.1:3000",
-	]
+	origins = _cors_origins()
 	app.add_middleware(
 		CORSMiddleware,
 		allow_origins=origins,
